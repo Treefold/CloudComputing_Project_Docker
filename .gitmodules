@@ -1,0 +1,5 @@
+[submodule "restful-api-node-express-crud"]
+	path = restful-api-node-express-crud
+	url = https://github.com/kirti/restful-api-node-express-crud
+	branch = main
+	ignore = dirty
