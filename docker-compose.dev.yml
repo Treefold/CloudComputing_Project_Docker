@@ -11,13 +11,14 @@ services:
       args:
         NODE_ENV: development
     volumes:
-      - ./:/app:ro
+      - ./BackendProject:/app:ro
     environment:
       - NODE_ENV=development
       - MONGO_USER=cloud_user
       - MONGO_PASSWORD=cloud_pass
       - SESSION_SECRET=secret
-    command: npm run dev
+    # command: npm run dev
+    command: node server/index.js
     
   mongo:
     environment:

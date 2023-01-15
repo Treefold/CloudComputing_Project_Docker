@@ -1,6 +1,6 @@
 FROM node:15
 WORKDIR /app
-COPY package.json .
+COPY ./BackendProject/package.json .
 
 ARG NODE_ENV
 RUN if [ "$NODE_ENV" = "development" ]; \
@@ -8,8 +8,8 @@ RUN if [ "$NODE_ENV" = "development" ]; \
         else npm install --only=production; \
         fi
 
-COPY . ./
+COPY ./BackendProject ./
 ENV PORT 3000
 EXPOSE $PORT
-CMD ["node", "index.js"]
+CMD ["node", "server/index.js"]
 # CMD ["npm", "run", "dev"]
