@@ -30,8 +30,10 @@ docker service ls
 docker stack ps cloud_app
 docker stack rm cloud_app
 
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml build node-app --no-dep
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --no-deps node-app 
 
-docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml cloud_app
+
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml build node-app 
+docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml --no-deps cloud_app
 
 docker exec -it node-docker_mongo_1 mongo -u "cloud_user" -p "cloud_pass"
