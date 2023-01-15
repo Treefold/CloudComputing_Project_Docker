@@ -1,5 +1,5 @@
-[submodule "restful-api-node-express-crud"]
-	path = restful-api-node-express-crud
-	url = https://github.com/kirti/restful-api-node-express-crud
+[submodule "BackendProject"]
+	path = BackendProject
+	url = https://github.com/musat-andreea/BackendProject
 	branch = main
 	ignore = all
