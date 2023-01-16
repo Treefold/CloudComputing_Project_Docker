@@ -22,7 +22,7 @@ docker logout
 
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml down
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml down
 
 docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml cloud_app
 docker stack services cloud_app
@@ -37,3 +37,5 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml build node-app
 docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml --no-deps cloud_app
 
 docker exec -it node-docker_mongo_1 mongo -u "cloud_user" -p "cloud_pass"
+
+docker rm -f $(docker ps -qa)
