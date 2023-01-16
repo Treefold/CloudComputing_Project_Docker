@@ -3,3 +3,7 @@
 	url = https://github.com/musat-andreea/BackendProject
 	branch = main
 	ignore = all
+[submodule "DWBI_Project"]
+	path = DWBI_Project
+	url = https://github.com/musat-andreea/DWBI_Project
+	branch = master
