@@ -1,6 +1,28 @@
 version: "3"
 services:
 
+  user:
+    deploy:
+      replicas: 8
+      restart_policy: 
+        condition: any
+      update_config:
+        parallelism: 2
+        delay: 15s
+        failure_action: rollback
+    build:
+      args:
+        NODE_ENV: production
+    environment:
+      - NODE_ENV=production
+      - MONGO_USER=cloud_user
+      - MONGO_PASSWORD=cloud_pass
+      - SESSION_SECRET=secret
+      # - MONGO_USER=${MONGO_USER}
+      # - MONGO_PASSWORD=${MONGO_PASSWORD}
+      # - SESSION_SECRET=${SESSION_SECRET}
+    command: npm run start-user
+
   node-app:
     deploy:
       replicas: 8
@@ -11,19 +33,9 @@ services:
         delay: 15s
         failure_action: rollback
     build:
-      context: .
       args:
         NODE_ENV: production
-    environment:
-      - NODE_ENV=production
-      - MONGO_USER=cloud_user
-      - MONGO_PASSWORD=cloud_pass
-      - SESSION_SECRET=secret
-      # - MONGO_USER=${MONGO_USER}
-      # - MONGO_PASSWORD={MONGO_PASSWORD}
-      # - SESSION_SECRET={SESSION_SECRET}
     command: npm run start
-    # command: node server/index.js
     
   mongo:
     environment:
