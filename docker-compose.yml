@@ -14,6 +14,7 @@ services:
       - node-app
       - user
       - frontend
+      - oracle
   
   user:
     build:
@@ -33,6 +34,8 @@ services:
     image: node-app
     environment:
       - PORT=3002
+    volumes:
+      - ./instantclient_21_8:/opt/oracle/instantclient_21_8/:ro
     depends_on:
       - user
 
@@ -47,7 +50,6 @@ services:
       - user
       - node-app
 
-  
   mongo:
     image: mongo:4.0
     environment:
@@ -59,5 +61,17 @@ services:
   redis:
     image: redis
 
+  oracle:
+    image: container-registry.oracle.com/database/enterprise
+    ports:
+      - "1521:1521"
+    environment:
+      - ORACLE_SID=orcl
+      - ORACLE_PWD=oracle
+    volumes:
+      - ./oracle/:/opt/oracle/scripts/startup:ro
+      - oracle-db:/opt/oracle/oradata
+
 volumes:
   mongo-db:
+  oracle-db:
